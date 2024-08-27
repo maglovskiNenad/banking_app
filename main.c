@@ -212,6 +212,7 @@ int main() {
     //log inu se sastoji while koji prikayuje balance i mogucnost da izadje napolje
     //ujednoi mamogucnost transfera
     //placanje racna...
+    //sve ti je objsanjeno
     
     intruducingApp();
     while (1)
