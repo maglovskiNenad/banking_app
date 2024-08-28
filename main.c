@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <termios.h>
 #include <unistd.h>
 #include <ctype.h>
 
@@ -67,21 +66,9 @@ void intruducingApp() {
     printf("-----------------------------------\n");
 }
 
-void disableEcho() {
-    struct termios tty;
-    tcgetattr(STDIN_FILENO, &tty);              
-    tty.c_lflag &= ~ECHO;                       
-    tcsetattr(STDIN_FILENO, TCSANOW, &tty);     
-}
-
-void enableEcho() {
-    struct termios tty;
-    tcgetattr(STDIN_FILENO, &tty);              
-    tty.c_lflag |= ECHO;                        
-    tcsetattr(STDIN_FILENO, TCSANOW, &tty);    
-}
 
 int balance(Account accounts[],char *username,char *password) {
+    int choice;
     for(int i = 0; i < MAX_ACCOUNT; i++){
         if(strcmp(accounts[i].username, username) == 0 && strcmp(accounts[i].password, password) == 0){
             printf("Welcome %s\n",accounts[i].username);
@@ -90,6 +77,8 @@ int balance(Account accounts[],char *username,char *password) {
             printf("In this moment you have to pay: %.2f\n",accounts[i].payments);
             printf("####################################\n");
             printf("Your id:%s\n",accounts[i].id);
+            printf("####################################\n");
+            printf("\n"); 
         }
     }
     return 0;
@@ -134,7 +123,7 @@ void loggin(Account accounts[],char *username,char *password) {
     char password_input[10];
     int entered_username = 1;
     int entered_password = 1;
-    int num_inputs = 0;
+    int choice;
 
     printf("Username:\n");
     while (1)
@@ -149,32 +138,41 @@ void loggin(Account accounts[],char *username,char *password) {
     printf("Password:\n");
     while (1)
     {
-        disableEcho();
+        //Ovde treba da se sakrije pasword
         scanf("%s",password_input);
-        enableEcho();
         if(isValidPassword(password_input)){
             entered_password = 0;
             break;
         }
     }
 
-   switch (entered_username == 0 && entered_password == 0)
-   {
-    case 1:
+    //U pitanju je infinitnvni loop ##########################################################################################
+    while (1)
+    {
         printf("-----------------------------------\n");
-        balance(accounts,username_input,password_input);
+        printf("1.Balance\n2.Transwer\n1.Exit\n");
         printf("-----------------------------------\n");
-        break;
-    case 2:
-        print("Thank you");
-    default:
-        printf("-----------------------------------\n");
-        printf("        ...Invalid choice...       \n");
-        printf("          ...Try again...          \n");
-        printf("-----------------------------------\n");
-        break;
-   }
-} 
+        switch (choice){
+            case 1:
+                printf("-----------------------------------\n");
+                balance(accounts,username_input,password_input);
+                printf("-----------------------------------\n");
+                break;
+            case 2:
+                printf("-----------------------------------\n");
+                transfer();
+                printf("-----------------------------------\n");
+                break;
+            case 3:
+                loggout();
+            default:
+                errorMsg();
+                break;
+            }
+     }
+}
+ 
+ //#############################################################################################################################
 
 int findFreeIndex(Account accounts[]) {
     for(int i = 0; i < MAX_ACCOUNT; i++){
@@ -204,37 +202,7 @@ int transfer() {
 }
 
 int main() {
-    int choice;
-    int num_accounts;
-
-    //ide if
-    //ako je uneo podatke ides na log in
-    //log inu se sastoji while koji prikayuje balance i mogucnost da izadje napolje
-    //ujednoi mamogucnost transfera
-    //placanje racna...
-    //sve ti je objsanjeno
-    
     intruducingApp();
-    while (1)
-    {
-        printf("-----------------------------------\n");
-        printf("1.Login\n2.Exit\n");
-        printf("-----------------------------------\n");
-        printf("Your choice: ");
-        scanf("%d",&choice);
-        printf("-----------------------------------\n");
-        switch(choice){
-            case 1:
-                loggin(accounts,&username,&password);
-                break;   
-            case 2:
-                loggout();
-            default:
-                errorMsg();
-                break;
-        }
-    }
+    loggin(accounts,&username,&password);
     return 0;
 }
-//POKUSAJ SA IF USLOVOM DA RESIS OVO DA JAD SE ULOGUJE OSTANE ULOGOVN A NE DA IZADJE NAPOLJE
-// nesto ne radi
