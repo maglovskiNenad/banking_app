@@ -22,7 +22,7 @@ The project also helps the user to deposit or withdraw a certain amount of money
 Using a mobile banking application, you can easily access your banking account, check balance, transfer funds, pay bills, deposit checks, etc. Overall, you can access almost all products and services provided by your banking institution.
 Most banking apps allow you to view your current balance and transaction history deposit checks up to a specific dollar value. Another thing you can do is to initiate transfers to other bank accounts, schedule payments or pay your bills, send person-to-person payments, and locate ATMs that are free for you to use.
 
-###Simple application that provides some kind of insight into the functions that the application serves and how they work in some way.
+### Simple application that provides some kind of insight into the functions that the application serves and how they work in some way.
 
 
 
