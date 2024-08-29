@@ -17,7 +17,13 @@ The Banking App is a console-based C application that simulates the operations o
 
 ## About the project
 
-This project helps you to understand the working and management of a bank. The bank gives the user a choice to login to the bank as a user . The project also helps the user to deposit or withdraw a certain amount of money from his/her own account. The user is also given the choice of taking a loan from the bank with a fixed rate of interest according to the money desired to borrow.
+This project helps you to understand the working and management of a bank. The bank gives the user a choice to login to the bank as a user . 
+The project also helps the user to deposit or withdraw a certain amount of money from his/her own account. The user is also given the choice of taking a loan from the bank with a fixed rate of interest according to the money desired to borrow.
+Using a mobile banking application, you can easily access your banking account, check balance, transfer funds, pay bills, deposit checks, etc. Overall, you can access almost all products and services provided by your banking institution.
+Most banking apps allow you to view your current balance and transaction history deposit checks up to a specific dollar value. Another thing you can do is to initiate transfers to other bank accounts, schedule payments or pay your bills, send person-to-person payments, and locate ATMs that are free for you to use.
+Simple application that provides some kind of insight into the functions that the application serves and how they work in some way.
+
+
 
 ## Features
 
