@@ -146,15 +146,14 @@ void loggin(Account accounts[],char *username,char *password) {
         }
     }
     
-    if(entered_usernam == 0 && entered_password == 0){
+    if(entered_username == 0 && entered_password == 0){
             printf("-----------------------------------\n");
             printf("1.Balance\n2.Transwer\n1.Exit\n");
             printf("-----------------------------------\n");
         }else{
             errorMsg();
             }
-    //U pitanju je infinitnvni loop ##########################################################################################
-    //ovo dole treba da ide u balance kako bose prikazao zeljenji iskaz
+
     while (1)
     {
         printf("-----------------------------------\n");
@@ -179,8 +178,6 @@ void loggin(Account accounts[],char *username,char *password) {
             }
      }
 }
- 
- //#############################################################################################################################
 
 int findFreeIndex(Account accounts[]) {
     for(int i = 0; i < MAX_ACCOUNT; i++){
