@@ -11,6 +11,7 @@ char username;
 char password;
 int input_username;
 int input_password;
+int choice;
 
 typedef struct{
     char id[10];
@@ -68,7 +69,6 @@ void intruducingApp() {
 
 
 int balance(Account accounts[],char *username,char *password) {
-    int choice;
     for(int i = 0; i < MAX_ACCOUNT; i++){
         if(strcmp(accounts[i].username, username) == 0 && strcmp(accounts[i].password, password) == 0){
             printf("Welcome %s\n",accounts[i].username);
@@ -78,8 +78,25 @@ int balance(Account accounts[],char *username,char *password) {
             printf("####################################\n");
             printf("Your id:%s\n",accounts[i].id);
             printf("####################################\n");
-            printf("\n"); 
+            printf("\n");
+            printf("1.Transver\n2.Exit\n");
+            int choice;
+            printf("Chose: ");
+            scanf("%d",&choice);
+            switch (choice)
+            {
+                case 1:
+                    transfer();
+                    break;
+                case 2:
+                    loggout();
+                    break;
+                default:
+                    errorMsg();
+
+            }
         }
+              
     }
     return 0;
 }
@@ -117,76 +134,6 @@ int isValidUsername(char *username) {
     }
     return 1;
 }
-    
-void loggin(Account accounts[],char *username,char *password) {
-    char username_input[10];
-    char password_input[10];
-    int entered_username = 1;
-    int entered_password = 1;
-    int choice;
-
-    printf("Username:\n");
-    while (1)
-    {
-        scanf("%s",username_input);
-        if(isValidUsername(username_input)){
-            entered_username = 0;
-            break;
-        }
-    }
-
-    printf("Password:\n");
-    while (1)
-    {
-        //Ovde treba da se sakrije pasword
-        scanf("%s",password_input);
-        if(isValidPassword(password_input)){
-            entered_password = 0;
-            break;
-        }
-    }
-    
-    if(entered_username == 0 && entered_password == 0){
-            printf("-----------------------------------\n");
-            printf("1.Balance\n2.Transwer\n1.Exit\n");
-            printf("-----------------------------------\n");
-        }else{
-            errorMsg();
-            }
-
-    while (1)
-    {
-        printf("-----------------------------------\n");
-        printf("1.Balance\n2.Transwer\n1.Exit\n");
-        printf("-----------------------------------\n");
-        switch (choice){
-            case 1:
-                printf("-----------------------------------\n");
-                balance(accounts,username_input,password_input);
-                printf("-----------------------------------\n");
-                break;
-            case 2:
-                printf("-----------------------------------\n");
-                transfer();
-                printf("-----------------------------------\n");
-                break;
-            case 3:
-                loggout();
-            default:
-                errorMsg();
-                break;
-            }
-     }
-}
-
-int findFreeIndex(Account accounts[]) {
-    for(int i = 0; i < MAX_ACCOUNT; i++){
-        if(accounts[i].id == 0){
-            return i;
-        }
-    }
-    return -1;
-}
 
 void loggout() {
     printf("-----------------------------------\n");
@@ -206,7 +153,42 @@ int transfer() {
     return 0;
 }
 
+void loggin(Account accounts[],char *username,char *password) {
+    char username_input[10];
+    char password_input[10];
+    int entered_username = 1;
+    int entered_password = 1;
+    int choice;
+
+    printf("Username: ");
+    while (1)
+    {
+        scanf("%s",username_input);
+        if(isValidUsername(username_input)){
+            entered_username = 0;
+            break;
+        }
+    }
+
+    printf("Password: ");
+    while (1)
+    {
+        scanf("%s",password_input);
+        if(isValidPassword(password_input)){
+            entered_password = 0;
+            break;
+        }
+    }
+    
+    if(entered_username == 0 && entered_password == 0){
+            balance(accounts,username_input,password_input);
+        }else{
+            errorMsg();
+        }
+}
+
 int main() {
+    int choice;
     intruducingApp();
     loggin(accounts,&username,&password);
     return 0;
