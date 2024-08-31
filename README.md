@@ -21,4 +21,6 @@ This project allowed me to learn certain parts of C programming where I had a li
 
 ## What can user do
 
+When the application is launched, the user has the ability to move through the application by having the permission as an application user to log in and log out at the same time. In addition, the application allows him to have insight into his account balance, as well as the possibility to request a new card for a new account, as well as the possibility of money transfer and bill payment.
+
 ## How to
