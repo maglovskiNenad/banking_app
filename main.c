@@ -12,6 +12,7 @@ char password;
 int input_username;
 int input_password;
 int choice;
+double money;
 
 typedef struct{
     char id[10];
@@ -86,7 +87,7 @@ int balance(Account accounts[],char *username,char *password) {
             switch (choice)
             {
                 case 1:
-                    transfer();
+                    transfer(accounts,accounts[i].username,accounts[i].password);
                     break;
                 case 2:
                     loggout();
@@ -148,10 +149,38 @@ void errorMsg() {
     printf("-----------------------------------\n");
 }
 
-int transfer() {
-    printf("Comming soon...\n");
-    return 0;
+void transferCheck(Account accounts[],char *username,double *money,int *choice) {
+    printf("Comming soon");
 }
+
+void transfer(Account accounts[],char *username,char *password) {
+    double sentMoney;
+    char person[10];
+    int choice;
+
+    printf("How much money would you like to send:");
+    scanf("%s",sentMoney);
+    printf("The persin which you send money would be:");
+    scanf("%s",person);
+
+    for(int i = 0; i < MAX_ACCOUNT; i++){
+        if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
+            printf("You are sending %d$\n",sentMoney);
+            printf("The name of person is: %s\n",person);
+            printf("If your answer is yes press 1, or if your answer is no press 2:\n");
+            scanf("%d",&choice);
+
+            if(choice == 1){
+                transferCheck(accounts,person,&sentMoney,choice);
+            }else{
+                printf("-----------------------------------\n");
+                printf("...............Decline.............\n");
+                printf("-----------------------------------\n");
+            }
+        }  
+    }
+}
+
 
 void loggin(Account accounts[],char *username,char *password) {
     char username_input[10];
