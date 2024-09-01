@@ -151,6 +151,8 @@ void errorMsg() {
 
 void transferCheck(Account accounts[],char *username,double *money,int *choice) {
     printf("Comming soon");
+    //ako sam dobro razumeo 
+    /**/
 }
 
 void transfer(Account accounts[],char *username,char *password) {
@@ -159,18 +161,18 @@ void transfer(Account accounts[],char *username,char *password) {
     int choice;
 
     printf("How much money would you like to send:");
-    scanf("%.2f",sentMoney);
+    scanf("%lf",&sentMoney);
     printf("The persin which you send money would be:");
     scanf("%s",person);
 
     for(int i = 0; i < MAX_ACCOUNT; i++){
         if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
-            printf("You are sending %.2f$\n",sentMoney);
+            printf("You are sending %lf\n",sentMoney);
             printf("The name of person is: %s\n",person);
             printf("If your answer is yes press 1, or if your answer is no press 2:\n");
             scanf("%d",&choice);
 
-            if(choice == 1){
+            if(choice == 1 && accounts[i].balance > sentMoney && accounts[i].balance > 0){
                 transferCheck(accounts,person,&sentMoney,choice);
             }else{
                 printf("-----------------------------------\n");
