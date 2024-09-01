@@ -159,13 +159,13 @@ void transfer(Account accounts[],char *username,char *password) {
     int choice;
 
     printf("How much money would you like to send:");
-    scanf("%s",sentMoney);
+    scanf("%.2f",sentMoney);
     printf("The persin which you send money would be:");
     scanf("%s",person);
 
     for(int i = 0; i < MAX_ACCOUNT; i++){
         if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
-            printf("You are sending %d$\n",sentMoney);
+            printf("You are sending %.2f$\n",sentMoney);
             printf("The name of person is: %s\n",person);
             printf("If your answer is yes press 1, or if your answer is no press 2:\n");
             scanf("%d",&choice);
