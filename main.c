@@ -150,6 +150,11 @@ void errorMsg() {
 }
 
 void transferCheck(Account accounts[],char *username,double *money,int *choice) {
+        for(int i = 0; i < MAX_ACCOUNT; i++){
+            printf("%s",accounts[i].username);
+            printf("%s",username);
+        }
+        
     printf("Comming soon");
     //ako sam dobro razumeo 
     /**/
