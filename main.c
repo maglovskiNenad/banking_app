@@ -151,19 +151,24 @@ void errorMsg() {
 
 void transferCheck(Account accounts[],char *username,double *money,int *choice) {
         for(int i = 0; i < MAX_ACCOUNT; i++){
-            printf("%s",accounts[i].username);
-            printf("%s",username);
+           /*
+            pogledaj kako ide u tranfer aplikaciji kako je urarjen loop tako nesto slicno tome 
+            treba da bude uradjeno ovde kako bi moglo da funckionise 
+            razmilsi o tome
+           */
         }
-        
-    printf("Comming soon");
-    //ako sam dobro razumeo 
-    /**/
+    /*Ovde je uradjen transfer i za sada tece sve kako treba ovde bi trebao da implementiras transfer novca koji je prebacen na drugi racun
+    tako da se razlika vidi 
+    nakon toga neopohodno je da se da se makar pokusa ostati u aplikaciji kao u loopu 
+    ne mora naravno
+    */
 }
 
 void transfer(Account accounts[],char *username,char *password) {
     double sentMoney;
     char person[10];
     int choice;
+    double moneyIsSent;
 
     printf("How much money would you like to send:");
     scanf("%lf",&sentMoney);
@@ -174,10 +179,12 @@ void transfer(Account accounts[],char *username,char *password) {
         if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
             printf("You are sending %lf\n",sentMoney);
             printf("The name of person is: %s\n",person);
-            printf("If your answer is yes press 1, or if your answer is no press 2:\n");
+            printf("If your answer is yes press 1, or if your answer is no press 2:");
             scanf("%d",&choice);
 
             if(choice == 1 && accounts[i].balance > sentMoney && accounts[i].balance > 0){
+                moneyIsSent = accounts[i].balance - sentMoney;
+                accounts[i].balance = moneyIsSent;
                 transferCheck(accounts,person,&sentMoney,choice);
             }else{
                 printf("-----------------------------------\n");
