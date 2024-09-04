@@ -1,6 +1,6 @@
 <img alt="banking app" src="/Image/banking_app.jpg" width="100%"/>
 
-## Banking App
+## SIMPLE BANKING AND FINANCE APP IN C
 
 ## A simulatio of banking application writen in C:
 
