@@ -106,9 +106,22 @@ int balance(Account accounts[],char *username,char *password) {
     return 0;
 }
 
-/*Nova funkcija koja treb da bude zasebna od ostalih*/
 void cardRequesting(Account accounts[],char *username,char *password) {
     int choice;
+    douboe answerMone;
+    
+    printf("We have a few questions for you...\n");
+    printf("How much do you earn?");
+    scanf("%lf",answerMonet);
+    printf("Which Card would you like to have:\n1.Gold\n2.Regular\n3.Exit\n");
+    scanf("%d",&choice);
+    if(choice == 1){
+        printf("1");
+    }else if(choice == 2){
+        printf("2");
+    }else if(choce == 3){
+        printf("3");
+    }
     printf("Comming soon");
 }
 
