@@ -122,7 +122,6 @@ void cardRequesting(Account accounts[],char *username,char *password) {
     }else if(choce == 3){
         printf("3");
     }
-    printf("Comming soon");
 }
 
 int isValidPassword(char *password) {
