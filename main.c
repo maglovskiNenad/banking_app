@@ -23,6 +23,8 @@ typedef struct{
     char address[20];
     double balance;
     double payments;
+    double cards;
+    char membership[10];
 }Account; 
 
 Account accounts[MAX_ACCOUNT] = {
@@ -35,6 +37,8 @@ Account accounts[MAX_ACCOUNT] = {
             .address = "Titanic",
             .balance = 55.55,
             .payments = 45.66,
+            .cards = 1.00,
+            .memberschip = "silver",
         },
         {
             .id = "002",
@@ -45,6 +49,8 @@ Account accounts[MAX_ACCOUNT] = {
             .address = "Golden Samy",
             .balance = 5055.55,
             .payments = 45.66,
+            .cards = 1.00,
+            .memberschip = "silver",
         },
         {
             .id = "007",
@@ -55,6 +61,8 @@ Account accounts[MAX_ACCOUNT] = {
             .address = "Unknown",
             .balance = 9999,
             .payments = 00.00,
+            .cards = 1.00,
+            .memberschip = "gold",
         },
     };
 
