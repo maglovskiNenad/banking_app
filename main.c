@@ -13,6 +13,8 @@ int input_username;
 int input_password;
 int choice;
 double money;
+char membership;
+char membershipUser;
 
 typedef struct{
     char id[10];
@@ -38,7 +40,7 @@ Account accounts[MAX_ACCOUNT] = {
             .balance = 55.55,
             .payments = 45.66,
             .cards = 1.00,
-            .memberschip = "silver",
+            .membership = "silver",
         },
         {
             .id = "002",
@@ -50,7 +52,7 @@ Account accounts[MAX_ACCOUNT] = {
             .balance = 5055.55,
             .payments = 45.66,
             .cards = 1.00,
-            .memberschip = "silver",
+            .membership = "silver",
         },
         {
             .id = "007",
@@ -62,7 +64,7 @@ Account accounts[MAX_ACCOUNT] = {
             .balance = 9999,
             .payments = 00.00,
             .cards = 1.00,
-            .memberschip = "gold",
+            .membership = "gold",
         },
     };
 
@@ -116,29 +118,41 @@ int balance(Account accounts[],char *username,char *password) {
 
 void cardRequesting(Account accounts[],char *username,char *password) {
     int choice;
-    double answerMone;
+    double answerMoney;
     
     printf("We have a few questions for you...\n");
     printf("How much do you earn?");
-    scanf("%lf",answerMonet);
+    scanf("%lf",answerMoney);
     printf("Which Card would you like to have:\n1.Gold\n2.Regular\n3.Exit\n");
     scanf("%d",&choice);
     if(choice == 1){
-        printf("1");
+        char gold = "gold";
         for(int i = 0; i < MAX_ACCOUNT; i++){
-            if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
-                
+            if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0 && accounts[i].membership != gold){
+                    printf("####################################\n");
+                    printf("Dear %s have successfully purchase the Gold card.\n",accounts[i].username);
+                    printf("####################################\n");
+                    printf("You are ordering a Gold member Card.\n");
+                    printf("Thank you for using our Banking App.\n");
+                    printf("####################################\n");
+                }else{
+                    errorMsg();
                 }
             }
     }else if(choice == 2){
         printf("2");
+        char silver = "silver";
         for(int i = 0; i < MAX_ACCOUNT; i++){
-            if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
-                
+            if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0 && accounts[i].membership != silver){
+                    printf("####################################\n");
+                    printf("Dear %s have successfully purchase the Silver card.\n",accounts[i].username);
+                    printf("####################################\n");
+                    printf("You are ordering a Gold member Card.\n");
+                    printf("Thank you for using our Banking App.\n");
+                    printf("####################################\n");
                 }
             }
-    }else if(choce == 3){
-        printf("3");
+    }else if(choice == 3){
         loggout();
     }
 }
