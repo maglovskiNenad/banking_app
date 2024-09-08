@@ -116,7 +116,7 @@ int balance(Account accounts[],char *username,char *password) {
 
 void cardRequesting(Account accounts[],char *username,char *password) {
     int choice;
-    douboe answerMone;
+    double answerMone;
     
     printf("We have a few questions for you...\n");
     printf("How much do you earn?");
@@ -125,10 +125,21 @@ void cardRequesting(Account accounts[],char *username,char *password) {
     scanf("%d",&choice);
     if(choice == 1){
         printf("1");
+        for(int i = 0; i < MAX_ACCOUNT; i++){
+            if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
+                
+                }
+            }
     }else if(choice == 2){
         printf("2");
+        for(int i = 0; i < MAX_ACCOUNT; i++){
+            if(strcmp(accounts[i].username,username) == 0 && strcmp(accounts[i].password,password) == 0){
+                
+                }
+            }
     }else if(choce == 3){
         printf("3");
+        loggout();
     }
 }
 
