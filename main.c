@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <windows.h>
 
 #define MAX_ACCOUNT 10
 
@@ -78,7 +79,6 @@ void intruducingApp() {
     printf("-----------------------------------\n");
 }
 
-
 int balance(Account accounts[],char *username,char *password) {
     for(int i = 0; i < MAX_ACCOUNT; i++){
         if(strcmp(accounts[i].username, username) == 0 && strcmp(accounts[i].password, password) == 0){
@@ -87,7 +87,7 @@ int balance(Account accounts[],char *username,char *password) {
             printf("Your balance is: %.2f\n",accounts[i].balance);
             printf("In this moment you have to pay: %.2f\n",accounts[i].payments);
             printf("####################################\n");
-            printf("You have biling proces for:% ld",accounts[i].payments);
+            printf("You have biling proces for:%ld",accounts[i].payments);
             printf("Your id:%s\n",accounts[i].id);
             printf("####################################\n");
             printf("\n");
@@ -206,18 +206,39 @@ void errorMsg() {
 
 void transferCheck(Account accounts[],char *username,double *money) {  
         double getMoney;
-        printf("-----------------------------------\n");
-        printf("   ...Transfering please wait...   \n");
-        printf("-----------------------------------\n");
         for(int i = 0; i < MAX_ACCOUNT; i++){
             if (strcmp(accounts[i].username,username) == 0)
             {
+                printf("-----------------------------------\n");
+                printf("   ...Transfering please wait...   \n");
+                printf("-----------------------------------\n");
                 getMoney = accounts[i].balance + *money;
                 accounts[i].balance = getMoney;
-            }else{
-                errorMsg();
             }
         }
+}
+
+int writeBill(char *username,char *input_username,double *money) {
+    FILE * fp = NULL;
+    SYSTEMTIME t;
+    GetLocalTime(&t);
+
+    fp = fopen("bill.txt","w+");
+    if(fp != NULL){
+        fprintf(fp,"-----------------------------------------\n");
+        fprintf(fp,"               Banking App               \n");
+        fprintf(fp,"-----------------------------------------\n");
+        fprintf(fp,"Sender: %s\n",username);
+        fprintf(fp,"User %s \n",input_username);
+        fprintf(fp,"Transaction: %.2lf € \n",*money);
+        fprintf(fp,"Date : %d.%d.%d \n",t.wDay,t.wMonth,t.wYear);
+        fprintf(fp,"Time: %d:%d \n", t.wHour, t.wMinute);
+        fprintf(fp,"-----------------------------------------\n");
+        fprintf(fp,"                Thank you                \n");
+        fprintf(fp,"-----------------------------------------\n");
+    }
+    fclose(fp);
+    return 0;
 }
 
 void transfer(Account accounts[],char *username,char *password) {
@@ -241,6 +262,7 @@ void transfer(Account accounts[],char *username,char *password) {
             if(choice == 1 && accounts[i].balance > sentMoney && accounts[i].balance > 0){
                 moneyIsSent = accounts[i].balance - sentMoney;
                 accounts[i].balance = moneyIsSent;
+                writeBill(accounts[i].username,person,&sentMoney);
                 transferCheck(accounts,person,&sentMoney);
             }else{
                 printf("-----------------------------------\n");
