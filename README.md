@@ -12,7 +12,7 @@ In this application you can see the interaction of a friendly user interface wit
 - Transfer money
 - Request for new card
 - Alert messeges
-- Bill in writing form
+- Printing receipt
   
 <hr>
 
