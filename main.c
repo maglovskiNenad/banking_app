@@ -222,7 +222,14 @@ int writeBill(Account accounts[],char *username,char *input_username,double *mon
     FILE * fp = NULL;
     SYSTEMTIME t;
     GetLocalTime(&t);
-
+ /*
+Fali
+Transaction Details:
+Account Name:  
+Account Number:   
+Amount: 
+Previous Balance: 
+*/
     fp = fopen("bill.txt","w+");
     if(fp != NULL){
         fprintf(fp,"-----------------------------------------\n");
