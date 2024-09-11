@@ -218,7 +218,7 @@ void transferCheck(Account accounts[],char *username,double *money) {
         }
 }
 
-int writeBill(char *username,char *input_username,double *money) {
+int writeBill(Account accounts[],char *username,char *input_username,double *money) {
     FILE * fp = NULL;
     SYSTEMTIME t;
     GetLocalTime(&t);
@@ -228,9 +228,10 @@ int writeBill(char *username,char *input_username,double *money) {
         fprintf(fp,"-----------------------------------------\n");
         fprintf(fp,"               Banking App               \n");
         fprintf(fp,"-----------------------------------------\n");
+        fprintf(fo,"Transaction Details:\n");
         fprintf(fp,"Sender: %s\n",username);
         fprintf(fp,"User %s \n",input_username);
-        fprintf(fp,"Transaction: %.2lf € \n",*money);
+        fprintf(fp,"Amount: %.2lf € \n",*money);
         fprintf(fp,"Date : %d.%d.%d \n",t.wDay,t.wMonth,t.wYear);
         fprintf(fp,"Time: %d:%d \n", t.wHour, t.wMinute);
         fprintf(fp,"-----------------------------------------\n");
@@ -262,7 +263,7 @@ void transfer(Account accounts[],char *username,char *password) {
             if(choice == 1 && accounts[i].balance > sentMoney && accounts[i].balance > 0){
                 moneyIsSent = accounts[i].balance - sentMoney;
                 accounts[i].balance = moneyIsSent;
-                writeBill(accounts[i].username,person,&sentMoney);
+                writeBill(accounts,accounts[i].username,person,&sentMoney);
                 transferCheck(accounts,person,&sentMoney);
             }else{
                 printf("-----------------------------------\n");
