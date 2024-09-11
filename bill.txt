@@ -1,11 +1,16 @@
 -----------------------------------------
                Banking App               
 -----------------------------------------
-Sender: Sam
-User Jack
-Transaction: 1.00 €
-Date : 10.9.2024
-Time: 22:28,
+Transaction Details:
+Sender: Jack
+Account number: 001
+Previous balance: 50.55
+Sender membership: silver
+Sender email: jack@jacky.com
+User Sam 
+Amount: 5.00 € 
+Date : 11.9.2024 
+Time: 22:12 
 -----------------------------------------
                 Thank you                
 -----------------------------------------

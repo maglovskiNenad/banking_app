@@ -222,21 +222,22 @@ int writeBill(Account accounts[],char *username,char *input_username,double *mon
     FILE * fp = NULL;
     SYSTEMTIME t;
     GetLocalTime(&t);
- /*
-Fali
-Transaction Details:
-Account Name:  
-Account Number:   
-Amount: 
-Previous Balance: 
-*/
+
     fp = fopen("bill.txt","w+");
     if(fp != NULL){
         fprintf(fp,"-----------------------------------------\n");
         fprintf(fp,"               Banking App               \n");
         fprintf(fp,"-----------------------------------------\n");
-        fprintf(fo,"Transaction Details:\n");
-        fprintf(fp,"Sender: %s\n",username);
+        fprintf(fp,"Transaction Details:\n");
+        for(int i = 0; i < MAX_ACCOUNT; i++){
+            if(strcmp(accounts[i].username,username) == 0){
+                fprintf(fp,"Sender: %s\n",accounts[i].username);
+                fprintf(fp,"Account number: %s\n",accounts[i].id);
+                fprintf(fp,"Previous balance: %.2lf\n",accounts[i].balance);
+                fprintf(fp,"Sender membership: %s\n",accounts[i].membership);
+                fprintf(fp,"Sender email: %s\n",accounts[i].email);
+            }
+        }
         fprintf(fp,"User %s \n",input_username);
         fprintf(fp,"Amount: %.2lf € \n",*money);
         fprintf(fp,"Date : %d.%d.%d \n",t.wDay,t.wMonth,t.wYear);
